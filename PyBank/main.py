@@ -19,11 +19,13 @@ with open(bankcsv) as csvfile:
         
         # Counts the number of months (aka lines)
         month_count = month_count + 1
-        #previous month established
-        #prevmonth = int(row[1])
+
         #Sum of Row 1 (Profit/Loss)
         netprofit = float(row[1])
 
+        #previous month established
+        prevmonth = int(row[1])
+        
         #Storing the difference between the month ahead and current month
         monthlydiff = int(row[1]) - prevmonth
         print('monthlydiff', monthlydiff)
