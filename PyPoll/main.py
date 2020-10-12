@@ -24,11 +24,11 @@ with open(poll_csv) as csvfile:
     for candidate in candidlist:
         print(candidate)
         vote_percent = (candidlist[candidate]/vote_count) *100
-        print(vote_percent)
+        print({:.3vote_percent)
         #candidate with most votes wins.
         if candidlist[candidate] > winner:
             winner = candidlist[candidate]
             CandidateName = candidate
     print(CandidateName + str(winner))
-    
+
 

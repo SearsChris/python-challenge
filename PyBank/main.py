@@ -7,6 +7,8 @@ bankcsv = os.path.join('Resources/Budgetdata.csv')
 month_count = 0
 #monthlyprofit = 0
 netprofit = 0
+firsttime = True
+change_total = 0
 
 with open(bankcsv) as csvfile:
     
@@ -23,16 +25,20 @@ with open(bankcsv) as csvfile:
         #Sum of Row 1 (Profit/Loss)
         netprofit = float(row[1])
 
-        #previous month established
-        prevmonth = int(row[1])
+        #Avg P/L
+        if not firsttime:
+            profit_change = int(row[1]) - previous_month
+            change_total = change_total + profit_change
         
+        firsttime = False
+        previous_month = int(row[1])
+
+    avgchange = change_total/(month_count - 1)
+
         #Storing the difference between the month ahead and current month
-        monthlydiff = int(row[1]) - prevmonth
-        print('monthlydiff', monthlydiff)
-        print('prevmonth', prevmonth)
+        #print('monthlydiff', monthlydiff)
+        #print('prevmonth', prevmonth)
         #Calculating avg changes in Profit/Losses
-    avgchange = monthlydiff/month_count
-    prevmonth = int(row[1])
     #formatting
     netprofit = "${:,.2f}".format(netprofit)
     avgchange = "${:,.2f}".format(avgchange)
