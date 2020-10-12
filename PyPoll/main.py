@@ -24,7 +24,8 @@ with open(poll_csv) as csvfile:
     for candidate in candidlist:
         print(candidate)
         vote_percent = (candidlist[candidate]/vote_count) *100
-        print({:.3vote_percent)
+        vote_percent = "{:0.3f}%".format(vote_percent)
+        print(vote_percent)
         #candidate with most votes wins.
         if candidlist[candidate] > winner:
             winner = candidlist[candidate]
