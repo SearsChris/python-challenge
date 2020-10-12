@@ -5,7 +5,7 @@ import csv
 
 bankcsv = os.path.join('Resources/Budgetdata.csv')
 month_count = 0
-monthlyprofit = 0
+#monthlyprofit = 0
 netprofit = 0
 
 with open(bankcsv) as csvfile:
@@ -13,22 +13,29 @@ with open(bankcsv) as csvfile:
     BankData = csv.reader(csvfile, delimiter=",")
     csv_header = next(BankData)
     line_count = 0
+    
 
     for row in BankData:
-        #print(row[0], row[1])
-        #line_count += 1
+        
+        # Counts the number of months (aka lines)
         month_count = month_count + 1
-        change = row[1]
-        #netprofit = float(row[1])
-        for change in row:
-             int(row[1]) - int(row[1])
-        #netprofit = "${:,.2f}".format(netprofit)
-        #average = "${:,.2f}".format(average)
-        #print(change)
-        #line_count += 1
-        avgchange = int(change)/int(month_count)
+        #previous month established
+        #prevmonth = int(row[1])
+        #Sum of Row 1 (Profit/Loss)
+        netprofit = float(row[1])
+
+        #Storing the difference between the month ahead and current month
+        monthlydiff = int(row[1]) - prevmonth
+        print('monthlydiff', monthlydiff)
+        print('prevmonth', prevmonth)
+        #Calculating avg changes in Profit/Losses
+    avgchange = monthlydiff/month_count
+    prevmonth = int(row[1])
+    #formatting
+    netprofit = "${:,.2f}".format(netprofit)
+    avgchange = "${:,.2f}".format(avgchange)
+
+    #Printing results
     print('Total Months:', month_count)
-    #print('Total Net Profit:',netprofit)
-    #print('Average Change:', '$',average)
-    #print('Total Profits:', netprofit)
-print('Average Change:', avgchange)
+    print('Total Net Profit:',netprofit)
+    print('Average Change:', avgchange)
